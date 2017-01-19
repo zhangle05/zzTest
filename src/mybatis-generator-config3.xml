@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration >
+  <context id="context1" >
+    <plugin type="org.mybatis.generator.plugins.AddLimitOffsetPlugin" />
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/thor?useUnicode=true&amp;characterEncoding=utf8&amp;" userId="thor" password="thor123" />
+    <javaModelGenerator targetPackage="com.jotunheim.thor.domain" targetProject="com.jotunheim.thor.domain" />
+    <sqlMapGenerator targetPackage="com.jotunheim.thor.dao" targetProject="com.jotunheim.thor.dao" />
+    <javaClientGenerator targetPackage="com.jotunheim.thor.dao" targetProject="com.jotunheim.thor.dao" type="XMLMAPPER" />
+    <!-- tables to be generated -->
+    <table schema="client_access_key" tableName="client_access_key">
+        <generatedKey column="id" sqlStatement="MySql" identity="true" />
+    </table>
+  </context>
+</generatorConfiguration>

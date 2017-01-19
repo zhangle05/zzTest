@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration >
+  <context id="context1" >
+    <plugin type="org.mybatis.generator.plugins.AddLimitOffsetPlugin" />
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/eclass?useUnicode=true&amp;characterEncoding=utf8&amp;" userId="xyt" password="xyt@talkweb$2015" />
+    <javaModelGenerator targetPackage="com.techyou.eclass.domain" targetProject="com.techyou.eclass.domain" />
+    <sqlMapGenerator targetPackage="com.techyou.eclass.dao" targetProject="com.techyou.eclass.dao" />
+    <javaClientGenerator targetPackage="com.techyou.eclass.dao" targetProject="com.techyou.eclass.dao" type="XMLMAPPER" />
+    <!-- tables to be generated -->
+	<table schema="eclass_appupdate" tableName="eclass_appupdate" />
+  </context>
+</generatorConfiguration>

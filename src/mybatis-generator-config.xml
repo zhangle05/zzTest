@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration >
+  <context id="context1" >
+    <plugin type="org.mybatis.generator.plugins.AddLimitOffsetPlugin" />
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/tps?useUnicode=true&amp;characterEncoding=utf8&amp;" userId="tps" password="123" />
+    <javaModelGenerator targetPackage="pku.dishu.tps.model" targetProject="tps" />
+    <sqlMapGenerator targetPackage="pku.dishu.tps.dao" targetProject="tps" />
+    <javaClientGenerator targetPackage="pku.dishu.tps.dao" targetProject="tps" type="XMLMAPPER" />
+    <!-- tables to be generated -->
+    <table schema="material" tableName="material">
+        <generatedKey column="id" sqlStatement="MySql" identity="true" />
+    </table>
+  </context>
+</generatorConfiguration>
