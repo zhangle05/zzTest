@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+
+    <context id="context1">
+        <plugin type="org.mybatis.generator.plugins.AddLimitOffsetPlugin" />
+
+       <!--  <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+            connectionURL="jdbc:mysql://localhost:3306/card?useUnicode=true&amp;characterEncoding=utf8&amp;"
+            userId="card" password="card@Ideal$2017" /> -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+            connectionURL="jdbc:mysql://123.56.162.14:3306/db_aibaocard?useUnicode=true&amp;characterEncoding=utf8&amp;"
+            userId="root" password="ideal2013" />
+
+        <javaModelGenerator targetPackage="com.ideal.card.domain.pojo"
+            targetProject="../com.ideal.card.domain/src/main/java" />
+
+        <sqlMapGenerator targetPackage="mapper"
+            targetProject="../com.ideal.card.dao/src/main/resources" />
+
+        <javaClientGenerator targetPackage="com.ideal.card.dao.gen"
+            targetProject="../com.ideal.card.dao/src/main/java" type="XMLMAPPER" />
+
+        <!-- tables to be generated -->
+        <table schema="card" tableName="card">
+            <generatedKey column="id" sqlStatement="MySql"
+                identity="true" />
+        </table>
+        <table schema="card_type" tableName="card_type">
+            <generatedKey column="id" sqlStatement="MySql"
+                identity="true" />
+        </table>
+    </context>
+</generatorConfiguration>

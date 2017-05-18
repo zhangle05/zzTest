@@ -8,6 +8,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 import net.sf.json.JSONArray;
@@ -34,20 +35,26 @@ public class ZZTest {
 //        System.out.println(System.currentTimeMillis());
 //        System.out.println(UUID.randomUUID());
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        try {
+            System.out.println(sdf.parse("2017-05-03 19:30:00").getTime());
+        } catch (ParseException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         System.out.println(sdf.format(new java.util.Date(1477929600000L)));
         System.out.println(sdf.format(new java.util.Date(1479281867854L)));
-        testNumber();
-        JSONObject json = JSONObject.fromObject("{\"subject\":20,\"isKnowledge\":false,\"section\":\"xxx\",\"selection\":[]}");
-        JSONArray arr = json.optJSONArray("selection");
-        System.out.println("arr is:" + arr);
-        double fee = 10.0;
-        if (fee >= 30) {
-            System.out.println(3);
-        } else if (fee >= 10) {
-            System.out.println(2);
-        } else if (fee >= 5) {
-            System.out.println(1);
-        }
+//        testNumber();
+//        JSONObject json = JSONObject.fromObject("{\"subject\":20,\"isKnowledge\":false,\"section\":\"xxx\",\"selection\":[]}");
+//        JSONArray arr = json.optJSONArray("selection");
+//        System.out.println("arr is:" + arr);
+//        double fee = 10.0;
+//        if (fee >= 30) {
+//            System.out.println(3);
+//        } else if (fee >= 10) {
+//            System.out.println(2);
+//        } else if (fee >= 5) {
+//            System.out.println(1);
+//        }
     }
 
     private static void trim(String inFile, String outFile) {
