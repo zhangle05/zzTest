@@ -21,7 +21,7 @@ public class WxTest {
     private String mAppSecret;
     private String mTemplateId;
     private String mAccessToken = "";
-    private static int sentCount = 76;
+    private static int sentCount = 0;
     // private String mAccessToken = "";
 
     public WxTest(String appId, String appSecret, String templateId) {
@@ -187,10 +187,29 @@ public class WxTest {
         System.out.println("start time is:" + startTime);
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy年MM月dd日  HH:mm");
         System.out.println("start time text is:" + formatter.format(new java.util.Date(startTime)));
+        System.out.println("要发送的用户数量:" + users.size());
+        boolean found = false;
+        for (int i = 0; i < users.size(); i++) {
+            JSONObject json = users.getJSONObject(i);
+            String openId = json.optString("open_id");
+            String nick = json.optString("nick_name");
+            if ("ocunstzaA1YLwHwusULZhWMGEIWQ".equals(openId)) {
+                found = true;
+                System.out.println("#######已包含用户" + nick);
+                break;
+            }
+        }
+        if (!found) {
+            System.err.println("#######未找到用户zl");
+        }
         if (startTime - now > minute30) {
             System.err.println("课程开始时间距离现在超过30分钟，暂时不能发送课程通知。");
             return;
         }
+//        if (true) {
+//            System.err.println("发生了一个sb错误");
+//            return;
+//        }
         boolean isAvailable = (startTime - now) < minute5;
         if (isAvailable) {
             if(!updateLesson(lessonId, teacher, teacherPic, startTime, false)) {
@@ -224,14 +243,14 @@ public class WxTest {
      * @param args
      */
     public static void main(String[] args) {
-        int lessonId = 42;
-        String lessonTitle = "教孩子时间管理远离拖拉";
+        int lessonId = 43;
+        String lessonTitle = "怎样培养孩子的同理心";
         String teacher = "苟雪林";
         String teacherPic = "http://ideal.oss-cn-beijing.aliyuncs.com/head/Gouxuelin.png";
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy年MM月dd日  HH:mm");
         java.util.Date date = null;
         try {
-            date = formatter.parse("2017年05月17日  19:30");
+            date = formatter.parse("2017年06月07日  19:30");
         } catch (ParseException e) {
             e.printStackTrace();
             return;
@@ -240,15 +259,19 @@ public class WxTest {
         System.out.println("start time is:" + startTime);
         java.util.Date newDate = new java.util.Date(startTime);
         System.out.println("restore start time is:" + formatter.format(newDate));
-        notifyOnlineUser(lessonId, lessonTitle, teacher, teacherPic, startTime);
+//        notifyOnlineUser(lessonId, lessonTitle, teacher, teacherPic, startTime);
+//        WxTest wt_online = new WxTest("wx8d11eeefe31400a8",
+//                "35099273b48ce317f1b503f37d4f7ade",
+//                "yVSJlv8G9pHJJ7rsN_T7udYilXNHxp6hLdzuycYimK4");
+//        wt_online.sendCourseMsg("ocunstzaA1YLwHwusULZhWMGEIWQ", 1, "测试", "测试老师", System.currentTimeMillis(), false, false);
 
 //        
-//        WxTest wt_test = new WxTest("wxa5edbfd15adfa7bb",
-//                "bea2c9b2d7eb183493d5f5aff0dfc431",
-//                "uUQZtOH1OCFyepir6B-m0UNSfg1f5qXbZf9UjxAWH1Q");
-//        String openId = "oecZwweTbjYZQitQKw8zm6qsC5iA";
-//            wt_test.sendCourseMsg(openId, lessonId, lessonTitle,
-//                    teacher, startTime, false, true);
+        WxTest wt_test = new WxTest("wxa5edbfd15adfa7bb",
+                "bea2c9b2d7eb183493d5f5aff0dfc431",
+                "uUQZtOH1OCFyepir6B-m0UNSfg1f5qXbZf9UjxAWH1Q");
+        String openId = "oecZwweTbjYZQitQKw8zm6qsC5iA";
+            wt_test.sendCourseMsg(openId, lessonId, lessonTitle,
+                    teacher, startTime, false, true);
     }
 
 }

@@ -10,15 +10,17 @@ import java.security.InvalidKeyException;
 import java.security.Key;
 import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
 import javax.crypto.Mac;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
-
-import net.sf.json.JSONObject;
 
 import org.apache.commons.codec.binary.Base64;
 import org.apache.http.HttpEntity;
@@ -33,6 +35,8 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.CoreProtocolPNames;
 import org.apache.http.util.EntityUtils;
 
+import net.sf.json.JSONObject;
+
 /**
  * @author zhangle
  *
@@ -43,38 +47,38 @@ public class Test2 {
     private static final String HMAC_SHA1 = "HMACSHA1";
     private static final String ACCESS_KEY = "FlYtX6d7G__okaQW8J3KY-MCpoKjdFaveHOum2ow";
     private static final String SECRET_KEY = "_PxKW1ACqjrVv9a4VwZp6ZNPq56yowrAb_kPdbzV";
-
-    public static void main(String[] args) {
-        try {
-            System.out.println(URLEncoder.encode("vid=198E34212094A8E89C33DC5901307461&siteid=0C728A4805962911&autoStart=true&width=100%&height=700&playerid=A8E5C78ED3BA6213&playertype=1", "utf-8"));
-            System.out.println();
-            System.out.println();
-        } catch (UnsupportedEncodingException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        String code = "1522000011442015360106";
-        System.out.println("Long.max is:" + Long.MAX_VALUE);
-        long value = Long.parseLong(code);
-        System.out.println("Long.max is:" + Long.MAX_VALUE + ", value is:" + value);
-        java.util.Date now = new java.util.Date();
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(now);
-        System.out.println(cal.getTime());
-        cal.add(Calendar.DAY_OF_MONTH, 30);
-        System.out.println(cal.getTime());
-
-    	UUID tmp = UUID.randomUUID();
-    	System.out.println(tmp);
-    	System.out.println("珠海市斗门区斗门镇初级中学".hashCode());
-//    	String result = upload();
-//    	System.out.println(result);
-    	String version = "2.7.0";
-		String[] versionArr = version.split("\\.");
-		for(int i=0; i<versionArr.length; i++) {
-			System.out.println(versionArr[i]);
-		}
-    }
+//
+//    public static void main(String[] args) {
+//        try {
+//            System.out.println(URLEncoder.encode("vid=198E34212094A8E89C33DC5901307461&siteid=0C728A4805962911&autoStart=true&width=100%&height=700&playerid=A8E5C78ED3BA6213&playertype=1", "utf-8"));
+//            System.out.println();
+//            System.out.println();
+//        } catch (UnsupportedEncodingException e) {
+//            // TODO Auto-generated catch block
+//            e.printStackTrace();
+//        }
+//        String code = "1522000011442015360106";
+//        System.out.println("Long.max is:" + Long.MAX_VALUE);
+//        long value = Long.parseLong(code);
+//        System.out.println("Long.max is:" + Long.MAX_VALUE + ", value is:" + value);
+//        java.util.Date now = new java.util.Date();
+//        Calendar cal = Calendar.getInstance();
+//        cal.setTime(now);
+//        System.out.println(cal.getTime());
+//        cal.add(Calendar.DAY_OF_MONTH, 30);
+//        System.out.println(cal.getTime());
+//
+//    	UUID tmp = UUID.randomUUID();
+//    	System.out.println(tmp);
+//    	System.out.println("珠海市斗门区斗门镇初级中学".hashCode());
+////    	String result = upload();
+////    	System.out.println(result);
+//    	String version = "2.7.0";
+//		String[] versionArr = version.split("\\.");
+//		for(int i=0; i<versionArr.length; i++) {
+//			System.out.println(versionArr[i]);
+//		}
+//    }
 
     public static byte[] getSignatureBytes(String data, String key)
             throws InvalidKeyException, NoSuchAlgorithmException {
@@ -184,5 +188,81 @@ public class Test2 {
 			httpclient.getConnectionManager().shutdown();
 		}
     }
+
+	public static void main(String[] args) {
+	    List<LectureScheduleDetailAdapter> result = new ArrayList<LectureScheduleDetailAdapter>();
+	    LectureScheduleDetailAdapter l1 = new LectureScheduleDetailAdapter();
+	    l1.setId(1);
+	    l1.setStartTime(new java.util.Date(1495440000000L));
+	    result.add(l1);
+	    LectureScheduleDetailAdapter l2 = new LectureScheduleDetailAdapter();
+        l2.setId(2);
+        l2.setStartTime(new java.util.Date(1495447200000L));
+        result.add(l2);
+        LectureScheduleDetailAdapter l3 = new LectureScheduleDetailAdapter();
+        l3.setId(3);
+        l3.setStartTime(new java.util.Date(1495443600000L));
+        result.add(l3);
+        LectureScheduleDetailAdapter l4 = new LectureScheduleDetailAdapter();
+        l4.setId(4);
+        l4.setStartTime(new java.util.Date(1495438800000L));
+        result.add(l4);
+        Collections.sort(result,
+                new Comparator<LectureScheduleDetailAdapter>() {
+
+                    @Override
+                    public int compare(LectureScheduleDetailAdapter o1,
+                            LectureScheduleDetailAdapter o2) {
+                        if (o1 == null || o2 == null
+                                || o1.getStartTime() == null
+                                || o2.getStartTime() == null) {
+                            return 0;
+                        }
+                        if (o1.getStartTime().getTime() > o2.getStartTime()
+                                .getTime()) {
+                            return 1;
+                        }
+                        if (o1.getStartTime().getTime() < o2.getStartTime()
+                                .getTime()) {
+                            return -1;
+                        }
+                        return 0;
+                    }
+                });
+        for (LectureScheduleDetailAdapter l : result) {
+            System.out.println(l.getId());
+            System.out.println(l.getStartTime());
+        }
+	}
 	
+	static class LectureScheduleDetailAdapter {
+	    int id;
+	    java.util.Date startTime;
+	    
+        /**
+         * @return the startTime
+         */
+        public java.util.Date getStartTime() {
+            return startTime;
+        }
+        /**
+         * @param startTime the startTime to set
+         */
+        public void setStartTime(java.util.Date startTime) {
+            this.startTime = startTime;
+        }
+        /**
+         * @return the id
+         */
+        public int getId() {
+            return id;
+        }
+        /**
+         * @param id the id to set
+         */
+        public void setId(int id) {
+            this.id = id;
+        }
+	    
+	}
 }

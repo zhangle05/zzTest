@@ -4,6 +4,7 @@
 package test;
 
 import java.security.SecureRandom;
+import java.text.SimpleDateFormat;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
@@ -22,6 +23,9 @@ public class DESTest {
         System.out.println("encryption is:" + encryption);
 
         String info = "673FEB2DCB515BA85A53E0F2E65E1AE2B7C7FE9F495F6EEEF7E83DC6EAF9A5F6245FF3BF7798C1ED8C4032EBBFE69A2449B14011D24C158E";
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        java.util.Date d = new java.util.Date(1495276320000L);
+        System.out.println(sdf.format(d));
     }
 
     /**
