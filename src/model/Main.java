@@ -22,16 +22,15 @@ public class Main {
 
         BaseUnit unit = new BaseUnit();
         unit.addGate(a1);
-//        unit.addGate(a2);
-//        unit.addGate(o);
-//        unit.addWire(w1);
-//        unit.addWire(w2);
+        unit.addGate(a2);
+        unit.addGate(o);
+        unit.addWire(w1);
+        unit.addWire(w2);
         unit.addInput(a1.getIn1());
         unit.addInput(a1.getIn2());
-//        unit.addInput(o.getIn1());
-//        unit.addInput(o.getIn2());
-//        unit.addOutput(a2.getOut());
-        unit.addOutput(a1.getOut());
+        unit.addInput(o.getIn1());
+        unit.addInput(o.getIn2());
+        unit.addOutput(a2.getOut());
 
         TrueTable tt = TrueTableUtil.generateTrueTable(unit);
         tt.print();
