@@ -11,9 +11,6 @@ import java.io.FileWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
-
 /**
  * @author zhangle
  *
@@ -24,6 +21,7 @@ public class ZZTest {
      * @param args
      */
     public static void main(String[] args) {
+        System.out.println(new java.util.Date(1497515963246L));
         // String inputFile =
         // "/Users/zhangle/dev/jingyou/normal_chinese_code.txt";
         // String outputFile = "/Users/zhangle/dev/jingyou/code.txt";
