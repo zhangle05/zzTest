@@ -126,8 +126,10 @@ public class MySQLHelper {
     public void initConnection() {
         try {
             Class.forName(driver);
-            mConn = DriverManager.getConnection(url + dbName, userName,
-                    passwrod);
+            mConn = DriverManager.getConnection(
+                    url + dbName
+                            + "?useUnicode=true&amp;characterEncoding=utf8mb4&amp;",
+                    userName, passwrod);
             System.out.println("init connection done, connection is:" + mConn);
         } catch (Exception ex) {
             ex.printStackTrace();
