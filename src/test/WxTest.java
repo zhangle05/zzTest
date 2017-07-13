@@ -66,16 +66,23 @@ public class WxTest {
         java.util.Date date = new java.util.Date(startTime);
         String timeStr = formatter.format(date);
         JSONObject data = new JSONObject();
-        data.put("first", getTemplateData("您好! 欢迎来到最爱宝365", "#000"));
+        data.put("first", getTemplateData("您好! 欢迎来到最爱宝", "#000"));
         data.put("keyword1", getTemplateData("一键定制父母课堂", "#000"));
-        data.put("keyword2", getTemplateData(lessonTitle, "#000"));
-        data.put("keyword3", getTemplateData(teacher, "#000"));
-        data.put("keyword4", getTemplateData(timeStr, "#000"));
-        if (courseAvailable) {
-            data.put("remark", getTemplateData("马上开课了,快来听听吧!", "#FF0000"));
-        } else {
-            data.put("remark", getTemplateData("记得来听课,不要迟到呦!", "#FF0000"));
-        }
+        data.put("keyword2", getTemplateData("7月15日-9月5日", "#000"));
+        // data.put("keyword2", getTemplateData(lessonTitle, "#000"));
+        // data.put("keyword3", getTemplateData(teacher, "#000"));
+        // data.put("keyword4", getTemplateData(timeStr, "#000"));
+        // if (courseAvailable) {
+        // data.put("remark", getTemplateData("马上开课了,快来听听吧!", "#FF0000"));
+        // } else {
+        // data.put("remark", getTemplateData("记得来听课,不要迟到呦!", "#FF0000"));
+        // }
+        data.put("remark",
+                getTemplateData("爱宝暑假开始了！\n" + "祝宝宝和宝爸宝妈们暑假假期愉快！\n"
+                        + "陪伴才是最好的爱，衷心的祝愿宝宝有一个快乐的暑假！\n"
+                        + "另外，带宝宝外出时不要忘记预防中暑哦！\n" + "爱宝暑假时间：7月15日-9月5日\n"
+                        + "开课时间：2017年9月6日    19:30\n" + "9月6日我们再见哦！!",
+                        "#FF0000"));
         postData.put("data", data);
         if (StringUtils.isEmpty(mAccessToken)) {
             mAccessToken = getAccessToken();
@@ -156,14 +163,14 @@ public class WxTest {
         String dbName = "db_jiazhangbang";
         String dbUser = isTest ? "root" : "huiku_admin";
         String dbPswd = isTest ? "ideal2013" : "huiku365";
-        String dbHost = isTest ? "123.56.162.14" : "rdsycfs8y0889r844v7v.mysql.rds.aliyuncs.com";
+        String dbHost = isTest ? "123.56.162.14"
+                : "rdsycfs8y0889r844v7v.mysql.rds.aliyuncs.com";
         String dbPort = "3306";
         MySQLHelper test_helper = new MySQLHelper(dbName, dbUser, dbPswd,
                 dbHost, dbPort);
         String sql = "UPDATE jzb_course_lesson SET timestamp=" + startTime
-                + ", teachername=" + "\"" + teacher + "\""
-                + ", teacherpic=" + "\"" + teacherPic + "\""
-                + ", status=1 WHERE id=" + lessonId;
+                + ", teachername=" + "\"" + teacher + "\"" + ", teacherpic="
+                + "\"" + teacherPic + "\"" + ", status=1 WHERE id=" + lessonId;
         JSONArray arr = test_helper.update(sql, null);
         System.out.println(arr);
         if (arr != null && arr.size() > 0) {
@@ -186,7 +193,8 @@ public class WxTest {
         long minute30 = 30 * 60 * 1000;
         System.out.println("start time is:" + startTime);
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy年MM月dd日  HH:mm");
-        System.out.println("start time text is:" + formatter.format(new java.util.Date(startTime)));
+        System.out.println("start time text is:"
+                + formatter.format(new java.util.Date(startTime)));
         System.out.println("要发送的用户数量:" + users.size());
         boolean found = false;
         for (int i = 0; i < users.size(); i++) {
@@ -206,13 +214,14 @@ public class WxTest {
             System.err.println("课程开始时间距离现在超过30分钟，暂时不能发送课程通知。");
             return;
         }
-//        if (true) {
-//            System.err.println("发生了一个sb错误");
-//            return;
-//        }
+        // if (true) {
+        // System.err.println("发生了一个sb错误");
+        // return;
+        // }
         boolean isAvailable = (startTime - now) < minute5;
         if (isAvailable) {
-            if(!updateLesson(lessonId, teacher, teacherPic, startTime, false)) {
+            if (!updateLesson(lessonId, teacher, teacherPic, startTime,
+                    false)) {
                 return;
             }
         }
@@ -230,8 +239,8 @@ public class WxTest {
                 if ("9ad8d7848f5b2626a07f9c28e61f7350".equals(openId)) {
                     openId = "oecZwweTbjYZQitQKw8zm6qsC5iA";
                 }
-                wt_online.sendCourseMsg(openId, lessonId, lessonTitle,
-                        teacher, startTime, isAvailable, false);
+                wt_online.sendCourseMsg(openId, lessonId, lessonTitle, teacher,
+                        startTime, isAvailable, false);
                 System.out.println("#######sent count:" + i);
             }
         } else {
@@ -258,20 +267,23 @@ public class WxTest {
         long startTime = date.getTime();
         System.out.println("start time is:" + startTime);
         java.util.Date newDate = new java.util.Date(startTime);
-        System.out.println("restore start time is:" + formatter.format(newDate));
-//        notifyOnlineUser(lessonId, lessonTitle, teacher, teacherPic, startTime);
-//        WxTest wt_online = new WxTest("wx8d11eeefe31400a8",
-//                "35099273b48ce317f1b503f37d4f7ade",
-//                "yVSJlv8G9pHJJ7rsN_T7udYilXNHxp6hLdzuycYimK4");
-//        wt_online.sendCourseMsg("ocunstzaA1YLwHwusULZhWMGEIWQ", 1, "测试", "测试老师", System.currentTimeMillis(), false, false);
+        System.out
+                .println("restore start time is:" + formatter.format(newDate));
+        // notifyOnlineUser(lessonId, lessonTitle, teacher, teacherPic,
+        // startTime);
+        // WxTest wt_online = new WxTest("wx8d11eeefe31400a8",
+        // "35099273b48ce317f1b503f37d4f7ade",
+        // "yVSJlv8G9pHJJ7rsN_T7udYilXNHxp6hLdzuycYimK4");
+        // wt_online.sendCourseMsg("ocunstzaA1YLwHwusULZhWMGEIWQ", 1, "测试",
+        // "测试老师", System.currentTimeMillis(), false, false);
 
-//        
+        //
         WxTest wt_test = new WxTest("wxa5edbfd15adfa7bb",
                 "bea2c9b2d7eb183493d5f5aff0dfc431",
-                "uUQZtOH1OCFyepir6B-m0UNSfg1f5qXbZf9UjxAWH1Q");
+                "MDNHFnNGujcNAH-LIm7m9rrNWrfS2hwyEV0Fzoq0gA0");
         String openId = "oecZwweTbjYZQitQKw8zm6qsC5iA";
-            wt_test.sendCourseMsg(openId, lessonId, lessonTitle,
-                    teacher, startTime, false, true);
+        wt_test.sendCourseMsg(openId, lessonId, lessonTitle, teacher, startTime,
+                false, true);
     }
 
 }
