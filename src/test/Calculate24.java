@@ -18,23 +18,7 @@ public class Calculate24 {
      */
     public static void main(String[] args) {
         Calculate24 c = new Calculate24();
-        String[] param = new String[] { "13", "8", "6", "5" };
-        // int size = 29;
-        // String[] test = new String[size];
-        // for (int i = 0; i < size; i++) {
-        // test[i] = String.valueOf(i);
-        // }
-        // long start = System.currentTimeMillis();
-        // String[][] result = c.getCombination2(test, 3);
-        // long end = System.currentTimeMillis();
-        // System.out.println(
-        // "result size:" + result.length + ", time is:" + (end - start));
-        // for (String[] r : result) {
-        // for (int i = 0; i < r.length; i++) {
-        // System.out.print(r[i]);
-        // System.out.print((i == (r.length - 1) ? "\r\n" : ","));
-        // }
-        // }
+        String[] param = new String[] { "11", "7", "5", "5" };
         System.out.println(c.calculate(param));
     }
 
