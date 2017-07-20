@@ -20,7 +20,7 @@ public class Calculate24New {
      */
     public static void main(String[] args) {
         Calculate24New c = new Calculate24New();
-        String[] param = new String[] { "11", "7", "5", "5"};
+        String[] param = new String[] { "11","7","5","5"};
         System.out.println(c.calculate(param));
     }
 
@@ -113,8 +113,12 @@ public class Calculate24New {
         if (!tree.getLeft().isLeaf() && isPrior(op, tree.getLeft().getValue())) {
             left = "(" + left + ")";
         }
-        if (!tree.getRight().isLeaf() && !isPrior(tree.getRight().getValue(), op)) {
-            right = "(" + right + ")";
+        if (!tree.getRight().isLeaf()) {
+            if (isPrior(op, tree.getRight().getValue())) {
+                right = "(" + right + ")";
+            } else if (!isPrior(tree.getRight().getValue(), op) && ("-".equals(op) || "/".equals(op))) {
+                right = "(" + right + ")";
+            }
         }
         return left + op + right;
     }
