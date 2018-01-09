@@ -1,10 +1,7 @@
-package pku.dishu.tps.util;
+package test;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class AESUtils {
 
@@ -12,18 +9,14 @@ public class AESUtils {
 
     private static String key = "81eb6d792cd7db84";
 
-    private static final Logger logger = LoggerFactory.getLogger(AESUtils.class);
-
     public static String Decrypt(String sSrc, String sKey) throws Exception {
         try {
             // 判断Key是否正确
             if (sKey == null) {
-                logger.error("Key为空null");
                 return null;
             }
             // 判断Key是否为16位
             if (sKey.length() != 16) {
-                logger.error("Key长度不是16位");
                 return null;
             }
             byte[] raw = sKey.getBytes(ENCODING);
@@ -36,11 +29,9 @@ public class AESUtils {
                 String originalString = new String(original, ENCODING);
                 return originalString;
             } catch (Exception e) {
-                logger.error("doFinal Error", e);
                 return null;
             }
         } catch (Exception ex) {
-            logger.error("Unkonw  Error", ex);
             return null;
         }
     }
@@ -74,8 +65,7 @@ public class AESUtils {
         }
         byte[] b = new byte[l / 2];
         for (int i = 0; i != l / 2; i++) {
-            b[i] = (byte) Integer.parseInt(strhex.substring(i * 2, i * 2 + 2),
-                    16);
+            b[i] = (byte) Integer.parseInt(strhex.substring(i * 2, i * 2 + 2), 16);
         }
         return b;
     }
@@ -105,6 +95,6 @@ public class AESUtils {
         System.out.println("encode:" + encode + ".");
         decode = Decrypt(encode, key);
         System.out.println("decode:" + decode + ".");
-        
+
     }
 }
