@@ -10,6 +10,8 @@ import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
 /**
+ * encryptor for password generation, code name: Euler
+ *
  * @author zhangle
  *
  */
