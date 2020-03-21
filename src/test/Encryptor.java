@@ -57,6 +57,6 @@ public class Encryptor {
         String key = "lbrfqystjhxytyxf"; // 128 bit key
         String initVector = "2ghlmcl1hblsqtdf"; // 16 bytes IV
 
-        System.out.println(encrypt(key, initVector, "einstein"));
+        System.out.println(encrypt(key, initVector, "pv=nrt"));
     }
 }

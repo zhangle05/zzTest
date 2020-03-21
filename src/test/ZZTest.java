@@ -21,7 +21,6 @@ public class ZZTest {
      * @param args
      */
     public static void main(String[] args) {
-        System.out.println(new java.util.Date(1497515963246L));
         // String inputFile =
         // "/Users/zhangle/dev/jingyou/normal_chinese_code.txt";
         // String outputFile = "/Users/zhangle/dev/jingyou/code.txt";
@@ -34,13 +33,13 @@ public class ZZTest {
 //        System.out.println(UUID.randomUUID());
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         try {
-            System.out.println(sdf.parse("2017-05-03 19:30:00").getTime());
+            System.out.println(sdf.parse("2020-03-10 15:08:58").getTime());
+//            System.out.println(sdf.parse("2017-05-03 19:30:00").getTime());
         } catch (ParseException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        System.out.println(sdf.format(new java.util.Date(1477929600000L)));
-        System.out.println(sdf.format(new java.util.Date(1479281867854L)));
+        
 //        testNumber();
 //        JSONObject json = JSONObject.fromObject("{\"subject\":20,\"isKnowledge\":false,\"section\":\"xxx\",\"selection\":[]}");
 //        JSONArray arr = json.optJSONArray("selection");

@@ -47,6 +47,7 @@ public class Test2 {
     private static final String HMAC_SHA1 = "HMACSHA1";
     private static final String ACCESS_KEY = "FlYtX6d7G__okaQW8J3KY-MCpoKjdFaveHOum2ow";
     private static final String SECRET_KEY = "_PxKW1ACqjrVv9a4VwZp6ZNPq56yowrAb_kPdbzV";
+    
 //
 //    public static void main(String[] args) {
 //        try {
@@ -190,6 +191,8 @@ public class Test2 {
     }
 
 	public static void main(String[] args) {
+	    UUID tmp = UUID.randomUUID();
+	    System.out.println(tmp);
 	    List<LectureScheduleDetailAdapter> result = new ArrayList<LectureScheduleDetailAdapter>();
 	    LectureScheduleDetailAdapter l1 = new LectureScheduleDetailAdapter();
 	    l1.setId(1);
